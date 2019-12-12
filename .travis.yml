@@ -30,14 +30,30 @@ jobs:
       script:
         - echo "Downloading $RELEASE_TAG"
         - wget -P build/libs https://github.com/SanjeetChoudhary/pal-tracker/tree/master/build/libs/pal-tracker.jar
+    env:
+      global:
+        - CF_API= $CF_API_URL
+        - CF_ORGANIZATION= $CF_ORG
+        - CF_USERNAME= $CF_USERNAME
+        - CF_PASSWORD= $CF_PASSWORD
+        - CF_SPACE= $CF_SPACE
       before_deploy:
         - echo "Deploying $RELEASE_TAG to Cloud Foundry"
+        - find . -type f -perm 0444
+        - export CF_TRACE=true
+#      deploy:
+#        provider: cloudfoundry
+#        api: $CF_API_URL
+#        username: $CF_USERNAME
+#        password: $CF_PASSWORD
+#        organization: $CF_ORG
+#        space: $CF_SPACE
+#        manifest: manifest.yml       # (optional)  Defaults to manifest.yml.
+#        app_name: pal-tracker
       deploy:
-        provider: cloudfoundry
-        api: $CF_API_URL
-        username: $CF_USERNAME
-        password: $CF_PASSWORD
-        organization: $CF_ORG
-        space: $CF_SPACE
-        manifest: manifest.yml       # (optional)  Defaults to manifest.yml.
-        app_name: pal-tracker
+        # 1. TO STAGING SPACE (continuously deploy here):
+        - provider: script
+          skip_cleanup: true
+          script: env CF_SPACE=development CF_APP_NAME=pal-tracker CF_MANIFEST=manifest.yml deploy_to_cf.sh
+          on:
+            repo: SanjeetChoudhary/pal-tracker
