@@ -1,5 +1,6 @@
 dist: trusty
 sudo: false
+language: ruby
 notifications:
   email: false
 env:
