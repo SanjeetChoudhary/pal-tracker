@@ -56,6 +56,6 @@ jobs:
         # 1. TO STAGING SPACE (continuously deploy here):
         - provider: script
           skip_cleanup: true
-          script: env CF_SPACE=development CF_APP_NAME=pal-tracker CF_MANIFEST=manifest.yml deploy_to_cf.sh
-#          on:
-#            repo: SanjeetChoudhary/pal-tracker
+          script: env CF_SPACE=development CF_APP_NAME=pal-tracker CF_MANIFEST=manifest.yml ci/deploy_to_cf.sh
+          on:
+            repo: SanjeetChoudhary/pal-tracker
