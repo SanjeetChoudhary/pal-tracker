@@ -44,18 +44,19 @@ jobs:
         - echo "Deploying $RELEASE_TAG to Cloud Foundry"
         - find . -type f -perm 0444
         - export CF_TRACE=true
-#      deploy:
-#        provider: cloudfoundry
-#        api: $CF_API_URL
-#        username: $CF_USERNAME
-#        password: $CF_PASSWORD
-#        organization: $CF_ORG
-#        space: $CF_SPACE
-#        manifest: manifest.yml       # (optional)  Defaults to manifest.yml.
-#        app_name: pal-tracker
       deploy:
-        # 1. TO STAGING SPACE (continuously deploy here):
-        - provider: script
-          skip_cleanup: true
-          script: env CF_SPACE=development CF_APP_NAME=pal-tracker CF_MANIFEST=manifest.yml ci/deploy_to_cf.sh
-
+        provider: cloudfoundry
+        api: $CF_API_URL
+        username: $CF_USERNAME
+        password: $CF_PASSWORD
+        organization: $CF_ORG
+        space: $CF_SPACE
+        manifest: manifest.yml       # (optional)  Defaults to manifest.yml.
+        app_name: pal-tracker
+      script: ./cf login -a=$CF_API -s=$CF_SPACE -o=$CF_ORGANIZATION -u=$CF_USERNAME -p=$CF_PASSWORD
+#      deploy:
+#        # 1. TO STAGING SPACE (continuously deploy here):
+#        - provider: script
+#          skip_cleanup: true
+#          script: env CF_SPACE=development CF_APP_NAME=pal-tracker CF_MANIFEST=manifest.yml ci/deploy_to_cf.sh
+#
