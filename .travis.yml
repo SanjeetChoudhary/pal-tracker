@@ -58,5 +58,4 @@ jobs:
         - provider: script
           skip_cleanup: true
           script: env CF_SPACE=development CF_APP_NAME=pal-tracker CF_MANIFEST=manifest.yml ci/deploy_to_cf.sh
-          on:
-            repo: https://github.com/SanjeetChoudhary/pal-tracker
+
