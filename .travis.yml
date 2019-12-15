@@ -42,6 +42,7 @@ jobs:
       - echo "Deploying $RELEASE_TAG to Cloud Foundry"
       before_script:
         - cf login -a https://api.run.pivotal.io -u sanjeetkumar.choudhary@cognizant.com -p Madhu$123 -o PalJavaArchitectCohort2 -s development
+        - Madhu$123
 #        - scripts/migrate-databases.sh pal-tracker .
       deploy:
         provider: cloudfoundry
