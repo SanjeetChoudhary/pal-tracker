@@ -40,9 +40,9 @@ jobs:
         - wget -P build/libs https://github.com/$GITHUB_USERNAME/pal-tracker/tree/master/build/libs/pal-tracker.jar
       before_deploy:
       - echo "Deploying $RELEASE_TAG to Cloud Foundry"
-  before_script:
-    - printenv
-    - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s $CF_SPACE
+      before_script:
+        - printenv
+        - cf login -a $CF_API_URL -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORG -s $CF_SPACE
    # - scripts/migrate-databases.sh pal-tracker .
       deploy:
         provider: cloudfoundry
