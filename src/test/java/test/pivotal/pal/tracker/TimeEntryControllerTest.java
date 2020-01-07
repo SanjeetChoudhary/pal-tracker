@@ -27,7 +27,7 @@ public class TimeEntryControllerTest {
         controller = new TimeEntryController(timeEntryRepository);
     }
 
-   // @Test
+    @Test
     public void testCreate() {
         long projectId = 123L;
         long userId = 456L;
@@ -48,7 +48,7 @@ public class TimeEntryControllerTest {
         assertThat(response.getBody()).isEqualTo(expectedResult);
     }
 
-   // @Test
+    @Test
     public void testRead() {
         long timeEntryId = 1L;
         long projectId = 123L;
@@ -65,7 +65,7 @@ public class TimeEntryControllerTest {
         assertThat(response.getBody()).isEqualTo(expected);
     }
 
-    //@Test
+    @Test
     public void testRead_NotFound() {
         long nonExistentTimeEntryId = 1L;
         doReturn(null)
@@ -76,7 +76,7 @@ public class TimeEntryControllerTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
-    //@Test
+    @Test
     public void testList() {
         List<TimeEntry> expected = asList(
             new TimeEntry(1L, 123L, 456L, LocalDate.parse("2017-01-08"), 8),
@@ -91,7 +91,7 @@ public class TimeEntryControllerTest {
         assertThat(response.getBody()).isEqualTo(expected);
     }
 
-   // @Test
+    @Test
     public void testUpdate() {
         long timeEntryId = 1L;
         long projectId = 987L;
@@ -108,7 +108,7 @@ public class TimeEntryControllerTest {
         assertThat(response.getBody()).isEqualTo(expected);
     }
 
-   // @Test
+    @Test
     public void testUpdate_NotFound() {
         long nonExistentTimeEntryId = 1L;
         doReturn(null)
@@ -119,7 +119,7 @@ public class TimeEntryControllerTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
-    //@Test
+    @Test
     public void testDelete() {
         long timeEntryId = 1L;
         ResponseEntity response = controller.delete(timeEntryId);
