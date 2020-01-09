@@ -1,3 +1,4 @@
+/*
 package test.pivotal.pal.trackerapi;
 
 import com.jayway.jsonpath.DocumentContext;
@@ -48,3 +49,4 @@ public class HealthApiTest {
         assertThat(healthJson.read("$.details.diskSpace.status", String.class)).isEqualTo("UP");
     }
 }
+*/
